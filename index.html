@@ -398,12 +398,16 @@
         <section id="inquiry" class="section bg-light">
             <div class="container">
                 <h2 class="section-title" data-i18n="inquiry_title">Poptávkový formulář</h2>
-                <div class="form-container">
-                    <form action="https://formsubmit.co/info@pujcovnaukarla.cz" method="POST">
+                <div class="form-container" id="form-container">
+                    <form action="https://formsubmit.co/info@pujcovnaukarla.cz" method="POST" id="inquiry-form">
                         <!-- Honeypot to prevent spam -->
                         <input type="text" name="_honey" style="display:none">
-                        <!-- Disable captcha for better UX (optional) -->
+                        <!-- Disable captcha for better UX -->
                         <input type="hidden" name="_captcha" value="false">
+                        <!-- Custom Success Redirect (Optional, using hidden field for now) -->
+                        <input type="hidden" name="_next" id="form-next" value="">
+                        <!-- Email Subject -->
+                        <input type="hidden" name="_subject" value="Nová poptávka z webu pujcovnaukarla.cz">
                         
                         <div class="form-group">
                             <label for="name" data-i18n="label_name">Jméno a příjmení</label>
@@ -535,7 +539,33 @@
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.getAttribute('onclick').includes(lang));
             });
+            
+            // Update FormSubmit parameters
+            const formNext = document.getElementById('form-next');
+            if (formNext) {
+                // Point to current URL with a success hash to show a localized message
+                formNext.value = window.location.origin + window.location.pathname + "#success";
+            }
+            
             localStorage.setItem('pref_lang', lang);
+        }
+
+        // Show success message if hash is #success
+        if (window.location.hash === "#success") {
+            const container = document.getElementById('form-container');
+            if (container) {
+                const currentLang = localStorage.getItem('pref_lang') || 'cs';
+                const msgs = {
+                    cs: "Děkujeme za vaši poptávku! Budeme vás brzy kontaktovat.",
+                    en: "Thank you for your inquiry! We will contact you soon.",
+                    de: "Vielen Dank für Ihre Anfrage! Wir werden Sie in Kürze kontaktovat."
+                };
+                container.innerHTML = `<div style="text-align:center; padding: 40px;">
+                    <span style="font-size: 3rem; margin-bottom: 20px; display:block;">✅</span>
+                    <h3 style="margin-bottom: 10px;">${msgs[currentLang]}</h3>
+                    <a href="#" onclick="window.location.hash=''; window.location.reload();" style="color:var(--primary); text-decoration:none; font-weight:600;">Zpět na web</a>
+                </div>`;
+            }
         }
 
         const savedLang = localStorage.getItem('pref_lang') || 'cs';

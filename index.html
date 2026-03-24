@@ -193,25 +193,65 @@
 
         .bg-light { background-color: var(--light); }
 
-        /* --- PRICING --- */
-        .pricing-table {
+        /* --- FLEET --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .service-card {
             background: var(--white);
+            padding: 32px;
             border-radius: var(--radius);
-            overflow: hidden;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card:hover { transform: translateY(-5px); }
+        .service-icon { font-size: 2.5rem; margin-bottom: 16px; display: block; }
+        .service-card h3 { margin-bottom: 12px; color: var(--dark); }
+        .service-card p { font-size: 0.9rem; color: var(--text-light); margin-bottom: 20px; flex-grow: 1; }
+        .price-tag { font-weight: 700; color: var(--primary); font-size: 1.2rem; }
+
+        /* --- INQUIRY FORM --- */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius);
             box-shadow: var(--shadow);
         }
 
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 24px 32px;
-            border-bottom: 1px solid #f1f5f9;
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--dark); }
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
         }
+        .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(44, 123, 229, 0.1); }
+        textarea.form-control { min-height: 120px; resize: vertical; }
 
-        .price-row:last-child { border-bottom: none; }
-
-        .price-name { font-weight: 600; font-size: 1.1rem; }
-        .price-value { font-weight: 700; color: var(--primary); font-size: 1.2rem; }
+        .legal-info {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            text-align: left;
+        }
 
         /* --- MAP & CONTACT --- */
         .contact-grid {
@@ -277,13 +317,11 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Simplified for demo, add hamburger if needed */
+            .nav-links { display: none; }
             .contact-grid { grid-template-columns: 1fr; }
             .section { padding: 60px 0; }
             .hero-content h1 { font-size: 2.8rem; }
         }
-
-        .mobile-menu-btn { display: none; }
     </style>
 </head>
 <body>
@@ -296,7 +334,7 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#home" data-i18n="nav_home">Domů</a></li>
-                <li><a href="#pricing" data-i18n="nav_pricing">Ceník</a></li>
+                <li><a href="#pricing" data-i18n="nav_pricing">Flotila</a></li>
                 <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
             </ul>
             <div class="lang-switcher">
@@ -312,33 +350,79 @@
             <div class="container hero-content">
                 <h1 data-i18n="hero_title">Půjčovna lodiček U&nbsp;Karla</h1>
                 <p data-i18n="hero_subtitle">Užijte si krásy Vranovské přehrady</p>
-                <a href="tel:+420736761578" class="btn" data-i18n="hero_cta">Rezervovat / Zavolat</a>
+                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#inquiry" class="btn" data-i18n="hero_cta">Nezávazná poptávka</a>
+                    <a href="tel:+420736761578" class="btn" style="background: var(--white); color: var(--primary);" data-i18n="hero_call">Zavolat hned</a>
+                </div>
             </div>
         </section>
 
         <section id="pricing" class="section container">
-            <h2 class="section-title" data-i18n="pricing_title">Ceník služeb</h2>
-            <div class="pricing-table">
-                <div class="price-row">
-                    <span class="price-name" data-i18n="price_rowboat">Lodička s vesly</span>
-                    <span class="price-value">150 Kč / hod</span>
+            <h2 class="section-title" data-i18n="pricing_title">Naše flotila a ceník</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div>
+                        <span class="service-icon">🛶</span>
+                        <h3 data-i18n="price_rowboat">Lodička s vesly</h3>
+                        <p data-i18n="desc_rowboat">Klasika pro romantiku i rodinný výlet. Stabilní a bezpečná plavidla.</p>
+                    </div>
+                    <span class="price-tag">150 Kč / hod</span>
                 </div>
-                <div class="price-row">
-                    <span class="price-name" data-i18n="price_paddleboard">Paddleboard</span>
-                    <span class="price-value">100 Kč / hod</span>
+                <div class="service-card">
+                    <div>
+                        <span class="service-icon">🏄‍♂️</span>
+                        <h3 data-i18n="price_paddleboard">Paddleboard</h3>
+                        <p data-i18n="desc_paddleboard">Moderní aktivní odpočinek. Skvělé pro stabilitu a prozkoumání zátok.</p>
+                    </div>
+                    <span class="price-tag">100 Kč / hod</span>
                 </div>
-                <div class="price-row">
-                    <span class="price-name" data-i18n="price_kayak">Kajak / Kánoe</span>
-                    <span class="price-value">150 Kč / hod</span>
+                <div class="service-card">
+                    <div>
+                        <span class="service-icon">🛶</span>
+                        <h3 data-i18n="price_kayak">Kajak / Kánoe</h3>
+                        <p data-i18n="desc_kayak">Pro sportovně laděné dobrodruhy. Rychlé a obratné na delší trasy.</p>
+                    </div>
+                    <span class="price-tag">150 Kč / hod</span>
                 </div>
-                <div class="price-row">
-                    <span class="price-name" data-i18n="price_electric">Loď s elektromotorem</span>
-                    <span class="price-value">600 Kč / hod</span>
+                <div class="service-card">
+                    <div>
+                        <span class="service-icon">🚤</span>
+                        <h3 data-i18n="price_electric">Loď s elektromotorem</h3>
+                        <p data-i18n="desc_electric">Pohodlí bez námahy. Tiché motory šetrné k přírodě, jednoduché ovládání.</p>
+                    </div>
+                    <span class="price-tag">600 Kč / hod</span>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section bg-light">
+        <section id="inquiry" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title" data-i18n="inquiry_title">Poptávkový formulář</h2>
+                <div class="form-container">
+                    <form action="https://formspree.io/f/mpwqlvgp" method="POST">
+                        <div class="form-group">
+                            <label for="name" data-i18n="label_name">Jméno a příjmení</label>
+                            <input type="text" id="name" name="name" class="form-control" required placeholder="Jan Novák">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-i18n="label_email_form">E-mail</label>
+                            <input type="email" id="email" name="email" class="form-control" required placeholder="jan@seznam.cz">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" data-i18n="label_phone_form">Telefon</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="+420 123 456 789">
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-i18n="label_message">Váš dotaz / Poptávka</label>
+                            <textarea id="message" name="message" class="form-control" required placeholder="Mám zájem o rezervaci..."></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;" data-i18n="btn_send">Odeslat poptávku</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
             <div class="container">
                 <h2 class="section-title" data-i18n="contact_title">Kde nás najdete</h2>
                 <div class="contact-grid">
@@ -350,7 +434,7 @@
                         <h3 data-i18n="contact_heading">Kontakt</h3>
                         <div class="contact-item">
                             <div>
-                                <strong data-i18n="label_address">Adresa provozovny</strong>
+                                <strong data-i18n="label_address">Provozovna</strong>
                                 <span>Onšov 12, 671 02 Onšov (Granátová zátoka)</span>
                             </div>
                         </div>
@@ -372,6 +456,11 @@
                                 <span>Po - Ne: 8:00 - 20:00</span>
                             </div>
                         </div>
+                        <div class="legal-info">
+                            <p><strong>Karel Koníček</strong></p>
+                            <p><span data-i18n="label_sidlo">Sídlo:</span> Sokolská 1295/21, 669 02 Znojmo</p>
+                            <p>IČO: 45447047</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -388,32 +477,47 @@
         const translations = {
             cs: {
                 logo: "Půjčovna lodiček U&nbsp;Karla",
-                nav_home: "Domů", nav_pricing: "Ceník", nav_contact: "Kontakt",
-                hero_title: "Půjčovna lodiček U&nbsp;Karla", hero_subtitle: "Užijte si krásy Vranovské přehrady", hero_cta: "Rezervovat / Zavolat",
-                pricing_title: "Ceník služeb",
+                nav_home: "Domů", nav_pricing: "Flotila", nav_contact: "Kontakt",
+                hero_title: "Půjčovna lodiček U&nbsp;Karla", hero_subtitle: "Užijte si krásy Vranovské přehrady", hero_cta: "Nezávazná poptávka", hero_call: "Zavolat hned",
+                pricing_title: "Naše flotila a ceník",
                 price_rowboat: "Lodička s vesly", price_paddleboard: "Paddleboard", price_kayak: "Kajak / Kánoe", price_electric: "Loď s elektromotorem",
+                desc_rowboat: "Klasika pro romantiku i rodinný výlet. Stabilní a bezpečná plavidla.",
+                desc_paddleboard: "Moderní aktivní odpočinek. Skvělé pro stabilitu a prozkoumání zátok.",
+                desc_kayak: "Pro sportovně laděné dobrodruhy. Rychlé a obratné na delší trasy.",
+                desc_electric: "Pohodlí bez námahy. Tiché motory šetrné k přírodě, jednoduché ovládání.",
+                inquiry_title: "Poptávkový formulář", label_name: "Jméno a příjmení", label_email_form: "E-mail", label_phone_form: "Telefon", label_message: "Váš dotaz / Poptávka", btn_send: "Odeslat poptávku",
                 contact_title: "Kde nás najdete", contact_heading: "Kontakt",
-                label_address: "Adresa provozovny", label_phone: "Telefon", label_email: "E-mail", label_hours: "Otevírací doba",
+                label_address: "Provozovna", label_phone: "Telefon", label_email: "E-mail", label_hours: "Otevírací doba", label_sidlo: "Sídlo",
                 map_cta: "Navigovat na místo"
             },
             en: {
                 logo: "Boat Rental U&nbsp;Karla",
-                nav_home: "Home", nav_pricing: "Pricing", nav_contact: "Contact",
-                hero_title: "Boat Rental U&nbsp;Karla", hero_subtitle: "Enjoy the beauty of Vranov Reservoir", hero_cta: "Book / Call Now",
-                pricing_title: "Price List",
+                nav_home: "Home", nav_pricing: "Fleet", nav_contact: "Contact",
+                hero_title: "Boat Rental U&nbsp;Karla", hero_subtitle: "Enjoy the beauty of Vranov Reservoir", hero_cta: "Inquiry Form", hero_call: "Call Now",
+                pricing_title: "Our Fleet & Pricing",
                 price_rowboat: "Rowboat", price_paddleboard: "Paddleboard", price_kayak: "Kayak / Canoe", price_electric: "Electric motor boat",
+                desc_rowboat: "A classic for romance or family trips. Stable and safe boats.",
+                desc_paddleboard: "Modern active relaxation. Great for balance and exploring bays.",
+                desc_kayak: "For sport-oriented adventurers. Fast and agile for longer routes.",
+                desc_electric: "Effortless comfort. Silent eco-friendly motors, easy to operate.",
+                inquiry_title: "Inquiry Form", label_name: "Full Name", label_email_form: "E-mail", label_phone_form: "Phone", label_message: "Your Message / Inquiry", btn_send: "Send Inquiry",
                 contact_title: "Where to find us", contact_heading: "Contact",
-                label_address: "Location address", label_phone: "Phone", label_email: "E-mail", label_hours: "Opening hours",
+                label_address: "Operating Location", label_phone: "Phone", label_email: "E-mail", label_hours: "Opening hours", label_sidlo: "Registered Office",
                 map_cta: "Navigate to location"
             },
             de: {
                 logo: "Bootsverleih U&nbsp;Karla",
-                nav_home: "Startseite", nav_pricing: "Preise", nav_contact: "Kontakt",
-                hero_title: "Bootsverleih U&nbsp;Karla", hero_subtitle: "Genießen Sie die Schönheit der Talsperre Vranov", hero_cta: "Reservieren / Anrufen",
-                pricing_title: "Preisliste",
+                nav_home: "Startseite", nav_pricing: "Flotte", nav_contact: "Kontakt",
+                hero_title: "Bootsverleih U&nbsp;Karla", hero_subtitle: "Genießen Sie die Schönheit der Talsperre Vranov", hero_cta: "Anfrageformular", hero_call: "Jetzt anrufen",
+                pricing_title: "Unsere Flotte & Preise",
                 price_rowboat: "Ruderboot", price_paddleboard: "Paddleboard", price_kayak: "Kajak / Kanu", price_electric: "Boot mit Elektromotor",
+                desc_rowboat: "Klassiker für Romantik oder Familienausflüge. Stabile und sichere Boote.",
+                desc_paddleboard: "Moderne aktive Entspannung. Ideal für Balance und Erkundung von Buchten.",
+                desc_kayak: "Für sportlich orientierte Abenteurer. Schnell und wendig für längere Strecken.",
+                desc_electric: "Müheloser Komfort. Leise, umweltfreundliche Motoren, einfach zu bedienen.",
+                inquiry_title: "Anfrageformular", label_name: "Vor- und Nachname", label_email_form: "E-mail", label_phone_form: "Telefon", label_message: "Ihre Nachricht / Anfrage", btn_send: "Anfrage senden",
                 contact_title: "Wo Sie uns finden", contact_heading: "Kontakt",
-                label_address: "Standortadresse", label_phone: "Telefon", label_email: "E-mail", label_hours: "Öffnungszeiten",
+                label_address: "Betriebsstätte", label_phone: "Telefon", label_email: "E-mail", label_hours: "Öffnungszeiten", label_sidlo: "Firmensitz",
                 map_cta: "Zum Standort navigieren"
             }
         };
@@ -429,7 +533,6 @@
             localStorage.setItem('pref_lang', lang);
         }
 
-        // Init
         const savedLang = localStorage.getItem('pref_lang') || 'cs';
         setLanguage(savedLang);
     </script>

@@ -5,135 +5,356 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Půjčovna lodiček U Karla - Vranovská přehrada</title>
     <meta name="description" content="Moderní půjčovna lodiček, šlapadel a paddleboardů v Granátové zátoce na Vranovské přehradě.">
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2c7be5;
+            --primary-dark: #1a5bb8;
+            --light: #f8f9fa;
+            --dark: #1a1f2b;
+            --text: #334155;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- HEADER --- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            margin-left: 20px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid #e2e8f0;
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .hero-content p {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 36px;
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(44, 123, 229, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background: var(--primary-dark);
+            box-shadow: 0 6px 20px rgba(44, 123, 229, 0.4);
+        }
+
+        /* --- SECTIONS --- */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: var(--dark);
+        }
+
+        .bg-light { background-color: var(--light); }
+
+        /* --- PRICING --- */
+        .pricing-table {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 24px 32px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .price-row:last-child { border-bottom: none; }
+
+        .price-name { font-weight: 600; font-size: 1.1rem; }
+        .price-value { font-weight: 700; color: var(--primary); font-size: 1.2rem; }
+
+        /* --- MAP & CONTACT --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .map-container {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            line-height: 0;
+        }
+
+        .contact-info {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info h3 { margin-bottom: 24px; font-size: 1.5rem; }
+
+        .contact-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item strong { display: block; color: var(--text-light); font-size: 0.85rem; text-transform: uppercase; }
+
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .map-btn {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            background: #4285F4;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .map-btn:hover { background: #3367D6; }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.6);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simplified for demo, add hamburger if needed */
+            .contact-grid { grid-template-columns: 1fr; }
+            .section { padding: 60px 0; }
+            .hero-content h1 { font-size: 2.8rem; }
+        }
+
+        .mobile-menu-btn { display: none; }
+    </style>
 </head>
 <body>
+
     <header class="header">
         <nav class="nav container">
-            <div class="logo">
-                <span class="logo-text">Půjčovna lodiček U Karla</span>
-            </div>
+            <a href="#" class="logo" data-i18n="logo">Půjčovna lodiček U Karla</a>
             <ul class="nav-links">
                 <li><a href="#home" data-i18n="nav_home">Domů</a></li>
-                <li><a href="#about" data-i18n="nav_about">O nás</a></li>
-                <li><a href="#services" data-i18n="nav_services">Služby</a></li>
                 <li><a href="#pricing" data-i18n="nav_pricing">Ceník</a></li>
                 <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
             </ul>
             <div class="lang-switcher">
-                <button class="lang-btn active" data-lang="cs">CS</button>
-                <button class="lang-btn" data-lang="en">EN</button>
-                <button class="lang-btn" data-lang="de">DE</button>
-            </div>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <button class="lang-btn active" onclick="setLanguage('cs')">CS</button>
+                <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+                <button class="lang-btn" onclick="setLanguage('de')">DE</button>
             </div>
         </nav>
     </header>
 
     <main>
         <section id="home" class="hero">
-            <div class="hero-overlay"></div>
             <div class="container hero-content">
                 <h1 data-i18n="hero_title">Půjčovna lodiček U Karla</h1>
-                <p data-i18n="hero_subtitle">Objevte krásy Vranovské přehrady z hladiny. Jsme tu pro vás v Granátové zátoce.</p>
-                <a href="#services" class="btn btn-primary" data-i18n="hero_cta">Prohlédnout lodě</a>
-            </div>
-        </section>
-
-        <section id="about" class="section container">
-            <div class="section-header">
-                <h2 data-i18n="about_title">O nás</h2>
-            </div>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p data-i18n="about_p1">Jsme rodinná půjčovna s dlouholetou tradicí. Naše stanoviště najdete v malebné Granátové zátoce na Vranovské přehradě, kde nabízíme klidné prostředí pro váš odpočinek.</p>
-                    <p data-i18n="about_p2">Dbáme na bezpečnost a kvalitu našeho vybavení, aby váš zážitek na vodě byl stoprocentní. Ať už hledáte romantiku nebo aktivní odpočinek, u nás si vyberete.</p>
-                </div>
-                <div class="about-image">
-                    <!-- Placeholder for image -->
-                    <div class="image-placeholder"></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="section bg-light">
-            <div class="container">
-                <div class="section-header">
-                    <h2 data-i18n="services_title">Naše flotila</h2>
-                </div>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">🛶</div>
-                        <h3 data-i18n="service_rowboat">Lodičky s vesly</h3>
-                        <p data-i18n="service_rowboat_desc">Klasika, která nikdy nezklame. Ideální pro páry i rodiny.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🏄‍♂️</div>
-                        <h3 data-i18n="service_paddleboard">Paddleboardy</h3>
-                        <p data-i18n="service_paddleboard_desc">Moderní způsob, jak prozkoumat zátoky a posílit tělo.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🛶</div>
-                        <h3 data-i18n="service_kayak">Kajaky a kánoe</h3>
-                        <p data-i18n="service_kayak_desc">Pro sportovně založené dobrodruhy hledající rychlost.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🚤</div>
-                        <h3 data-i18n="service_electric">Elektročluny</h3>
-                        <p data-i18n="service_electric_desc">Pohodlí bez námahy. Tiché motory šetrné k přírodě.</p>
-                    </div>
-                </div>
+                <p data-i18n="hero_subtitle">Užijte si krásy Vranovské přehrady</p>
+                <a href="tel:+420736761578" class="btn" data-i18n="hero_cta">Rezervovat / Zavolat</a>
             </div>
         </section>
 
         <section id="pricing" class="section container">
-            <div class="section-header">
-                <h2 data-i18n="pricing_title">Ceník</h2>
-            </div>
+            <h2 class="section-title" data-i18n="pricing_title">Ceník služeb</h2>
             <div class="pricing-table">
-                <div class="price-item">
-                    <span data-i18n="price_rowboat">Lodička s vesly</span>
-                    <span class="price">150 Kč / hod</span>
+                <div class="price-row">
+                    <span class="price-name" data-i18n="price_rowboat">Lodička s vesly</span>
+                    <span class="price-value">150 Kč / hod</span>
                 </div>
-                <div class="price-item">
-                    <span data-i18n="price_paddleboard">Paddleboard</span>
-                    <span class="price">100 Kč / hod</span>
+                <div class="price-row">
+                    <span class="price-name" data-i18n="price_paddleboard">Paddleboard</span>
+                    <span class="price-value">100 Kč / hod</span>
                 </div>
-                <div class="price-item">
-                    <span data-i18n="price_kayak">Kajak / Kánoe</span>
-                    <span class="price">150 Kč / hod</span>
+                <div class="price-row">
+                    <span class="price-name" data-i18n="price_kayak">Kajak / Kánoe</span>
+                    <span class="price-value">150 Kč / hod</span>
                 </div>
-                <div class="price-item">
-                    <span data-i18n="price_electric">Loď s elektromotorem</span>
-                    <span class="price">600 Kč / hod</span>
+                <div class="price-row">
+                    <span class="price-name" data-i18n="price_electric">Loď s elektromotorem</span>
+                    <span class="price-value">600 Kč / hod</span>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section bg-dark text-light">
+        <section id="contact" class="section bg-light">
             <div class="container">
-                <div class="section-header">
-                    <h2 data-i18n="contact_title">Kontaktujte nás</h2>
-                </div>
+                <h2 class="section-title" data-i18n="contact_title">Kde nás najdete</h2>
                 <div class="contact-grid">
-                    <div class="contact-info">
-                        <h3>Karel Koníček</h3>
-                        <p><strong>Provozovna:</strong> Onšov 12, 671 02 Onšov<br>(Granátová zátoka, Vranovská přehrada)</p>
-                        <p><strong>Telefon:</strong> <a href="tel:+420736761578">+420 736 761 578</a></p>
-                        <p><strong>Email:</strong> <a href="mailto:info@pujcovnaukarla.cz">info@pujcovnaukarla.cz</a></p>
-                        <p><strong>Otevírací doba:</strong> Po - Ne: 8:00 - 20:00</p>
-                        <div style="margin-top: 20px;">
-                            <a href="https://maps.app.goo.gl/V1NHT1t7rASqE1pp7" target="_blank" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Otevřít v Mapách Google</a>
-                        </div>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2622.268956940713!2d15.819880312932856!3d48.91026779693366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4772ad006416a65b%3A0xd142bad66376e6b4!2zUMWvasSNb3ZuYSBsb2RpxI1layBVIEthcmxh!5e0!3m2!1scs!2scz!4v1774380922799!5m2!1scs!2scz" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <a href="https://maps.app.goo.gl/V1NHT1t7rASqE1pp7" target="_blank" class="map-btn" data-i18n="map_cta">Navigovat na místo</a>
                     </div>
-                    <div class="contact-map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2622.268956940713!2d15.819880312932856!3d48.91026779693366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4772ad006416a65b%3A0xd142bad66376e6b4!2zUMWvasSNb3ZuYSBsb2RpxI1layBVIEthcmxh!5e0!3m2!1scs!2scz!4v1774380922799!5m2!1scs!2scz" width="100%" height="350" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="contact-info">
+                        <h3 data-i18n="contact_heading">Kontakt</h3>
+                        <div class="contact-item">
+                            <div>
+                                <strong data-i18n="label_address">Adresa provozovny</strong>
+                                <span>Onšov 12, 671 02 Onšov (Granátová zátoka)</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div>
+                                <strong data-i18n="label_phone">Telefon</strong>
+                                <a href="tel:+420736761578">+420 736 761 578</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div>
+                                <strong data-i18n="label_email">E-mail</strong>
+                                <a href="mailto:info@pujcovnaukarla.cz">info@pujcovnaukarla.cz</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div>
+                                <strong data-i18n="label_hours">Otevírací doba</strong>
+                                <span>Po - Ne: 8:00 - 20:00</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -146,7 +367,54 @@
         </div>
     </footer>
 
-    <script src="translations.js"></script>
-    <script src="script.js"></script>
+    <script>
+        const translations = {
+            cs: {
+                logo: "Půjčovna lodiček U Karla",
+                nav_home: "Domů", nav_pricing: "Ceník", nav_contact: "Kontakt",
+                hero_title: "Půjčovna lodiček U Karla", hero_subtitle: "Užijte si krásy Vranovské přehrady", hero_cta: "Rezervovat / Zavolat",
+                pricing_title: "Ceník služeb",
+                price_rowboat: "Lodička s vesly", price_paddleboard: "Paddleboard", price_kayak: "Kajak / Kánoe", price_electric: "Loď s elektromotorem",
+                contact_title: "Kde nás najdete", contact_heading: "Kontakt",
+                label_address: "Adresa provozovny", label_phone: "Telefon", label_email: "E-mail", label_hours: "Otevírací doba",
+                map_cta: "Navigovat na místo"
+            },
+            en: {
+                logo: "Boat Rental U Karla",
+                nav_home: "Home", nav_pricing: "Pricing", nav_contact: "Contact",
+                hero_title: "Boat Rental U Karla", hero_subtitle: "Enjoy the beauty of Vranov Reservoir", hero_cta: "Book / Call Now",
+                pricing_title: "Price List",
+                price_rowboat: "Rowboat", price_paddleboard: "Paddleboard", price_kayak: "Kayak / Canoe", price_electric: "Electric motor boat",
+                contact_title: "Where to find us", contact_heading: "Contact",
+                label_address: "Location address", label_phone: "Phone", label_email: "E-mail", label_hours: "Opening hours",
+                map_cta: "Navigate to location"
+            },
+            de: {
+                logo: "Bootsverleih U Karla",
+                nav_home: "Startseite", nav_pricing: "Preise", nav_contact: "Kontakt",
+                hero_title: "Bootsverleih U Karla", hero_subtitle: "Genießen Sie die Schönheit der Talsperre Vranov", hero_cta: "Reservieren / Anrufen",
+                pricing_title: "Preisliste",
+                price_rowboat: "Ruderboot", price_paddleboard: "Paddleboard", price_kayak: "Kajak / Kanu", price_electric: "Boot mit Elektromotor",
+                contact_title: "Wo Sie uns finden", contact_heading: "Kontakt",
+                label_address: "Standortadresse", label_phone: "Telefon", label_email: "E-mail", label_hours: "Öffnungszeiten",
+                map_cta: "Zum Standort navigieren"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('onclick').includes(lang));
+            });
+            localStorage.setItem('pref_lang', lang);
+        }
+
+        // Init
+        const savedLang = localStorage.getItem('pref_lang') || 'cs';
+        setLanguage(savedLang);
+    </script>
 </body>
 </html>

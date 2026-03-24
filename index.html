@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Půjčovna lodiček U Karla - Vranovská přehrada</title>
+    <meta name="description" content="Moderní půjčovna lodiček, šlapadel a paddleboardů v Granátové zátoce na Vranovské přehradě.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">
+                <span class="logo-text">U Karla</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" data-i18n="nav_home">Domů</a></li>
+                <li><a href="#about" data-i18n="nav_about">O nás</a></li>
+                <li><a href="#services" data-i18n="nav_services">Služby</a></li>
+                <li><a href="#pricing" data-i18n="nav_pricing">Ceník</a></li>
+                <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
+            </ul>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="cs">CS</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+            </div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <h1 data-i18n="hero_title">Půjčovna lodiček U Karla</h1>
+                <p data-i18n="hero_subtitle">Objevte krásy Vranovské přehrady z hladiny. Jsme tu pro vás v Granátové zátoce.</p>
+                <a href="#services" class="btn btn-primary" data-i18n="hero_cta">Prohlédnout lodě</a>
+            </div>
+        </section>
+
+        <section id="about" class="section container">
+            <div class="section-header">
+                <h2 data-i18n="about_title">O nás</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p data-i18n="about_p1">Jsme rodinná půjčovna s dlouholetou tradicí. Naše stanoviště najdete v malebné Granátové zátoce na Vranovské přehradě, kde nabízíme klidné prostředí pro váš odpočinek.</p>
+                    <p data-i18n="about_p2">Dbáme na bezpečnost a kvalitu našeho vybavení, aby váš zážitek na vodě byl stoprocentní. Ať už hledáte romantiku nebo aktivní odpočinek, u nás si vyberete.</p>
+                </div>
+                <div class="about-image">
+                    <!-- Placeholder for image -->
+                    <div class="image-placeholder"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-i18n="services_title">Naše flotila</h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🛶</div>
+                        <h3 data-i18n="service_rowboat">Lodičky s vesly</h3>
+                        <p data-i18n="service_rowboat_desc">Klasika, která nikdy nezklame. Ideální pro páry i rodiny.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🏄‍♂️</div>
+                        <h3 data-i18n="service_paddleboard">Paddleboardy</h3>
+                        <p data-i18n="service_paddleboard_desc">Moderní způsob, jak prozkoumat zátoky a posílit tělo.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🛶</div>
+                        <h3 data-i18n="service_kayak">Kajaky a kánoe</h3>
+                        <p data-i18n="service_kayak_desc">Pro sportovně založené dobrodruhy hledající rychlost.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🚤</div>
+                        <h3 data-i18n="service_electric">Elektročluny</h3>
+                        <p data-i18n="service_electric_desc">Pohodlí bez námahy. Tiché motory šetrné k přírodě.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="section container">
+            <div class="section-header">
+                <h2 data-i18n="pricing_title">Ceník</h2>
+            </div>
+            <div class="pricing-table">
+                <div class="price-item">
+                    <span data-i18n="price_rowboat">Lodička s vesly</span>
+                    <span class="price">150 Kč / hod</span>
+                </div>
+                <div class="price-item">
+                    <span data-i18n="price_paddleboard">Paddleboard</span>
+                    <span class="price">100 Kč / hod</span>
+                </div>
+                <div class="price-item">
+                    <span data-i18n="price_kayak">Kajak / Kánoe</span>
+                    <span class="price">150 Kč / hod</span>
+                </div>
+                <div class="price-item">
+                    <span data-i18n="price_electric">Loď s elektromotorem</span>
+                    <span class="price">600 Kč / hod</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section bg-dark text-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-i18n="contact_title">Kontaktujte nás</h2>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Karel Koníček</h3>
+                        <p><strong>Provozovna:</strong> Onšov 12, 671 02 (Granátová zátoka)</p>
+                        <p><strong>Telefon:</strong> <a href="tel:+420736761578">+420 736 761 578</a></p>
+                        <p><strong>Email:</strong> <a href="mailto:info@pujcovnaukarla.cz">info@pujcovnaukarla.cz</a></p>
+                        <p><strong>Otevírací doba:</strong> Po - Ne: 8:00 - 20:00</p>
+                    </div>
+                    <div class="contact-map">
+                        <!-- Simplified Map Placeholder -->
+                        <div class="map-placeholder">
+                            <p>Vranovská přehrada - Granátová zátoka</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Půjčovna lodiček U Karla. Všechna práva vyhrazena.</p>
+        </div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

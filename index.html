@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Půjčovna lodiček U Karla - Vranovská přehrada</title>
+    <title>Půjčovna lodiček U&nbsp;Karla - Vranovská přehrada</title>
     <meta name="description" content="Moderní půjčovna lodiček, šlapadel a paddleboardů v Granátové zátoce na Vranovské přehradě.">
     
     <!-- Google Fonts: Inter -->
@@ -276,7 +276,7 @@
 
     <header class="header">
         <nav class="nav container">
-            <a href="#" class="logo" data-i18n="logo">Půjčovna lodiček U Karla</a>
+            <a href="#" class="logo" data-i18n="logo">Půjčovna lodiček U&nbsp;Karla</a>
             <ul class="nav-links">
                 <li><a href="#home" data-i18n="nav_home">Domů</a></li>
                 <li><a href="#pricing" data-i18n="nav_pricing">Ceník</a></li>
@@ -293,7 +293,7 @@
     <main>
         <section id="home" class="hero">
             <div class="container hero-content">
-                <h1 data-i18n="hero_title">Půjčovna lodiček U Karla</h1>
+                <h1 data-i18n="hero_title">Půjčovna lodiček U&nbsp;Karla</h1>
                 <p data-i18n="hero_subtitle">Užijte si krásy Vranovské přehrady</p>
                 <a href="tel:+420736761578" class="btn" data-i18n="hero_cta">Rezervovat / Zavolat</a>
             </div>
@@ -363,16 +363,16 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Půjčovna lodiček U Karla. Všechna práva vyhrazena.</p>
+            <p>&copy; 2026 Půjčovna lodiček U&nbsp;Karla. Všechna práva vyhrazena.</p>
         </div>
     </footer>
 
     <script>
         const translations = {
             cs: {
-                logo: "Půjčovna lodiček U Karla",
+                logo: "Půjčovna lodiček U&nbsp;Karla",
                 nav_home: "Domů", nav_pricing: "Ceník", nav_contact: "Kontakt",
-                hero_title: "Půjčovna lodiček U Karla", hero_subtitle: "Užijte si krásy Vranovské přehrady", hero_cta: "Rezervovat / Zavolat",
+                hero_title: "Půjčovna lodiček U&nbsp;Karla", hero_subtitle: "Užijte si krásy Vranovské přehrady", hero_cta: "Rezervovat / Zavolat",
                 pricing_title: "Ceník služeb",
                 price_rowboat: "Lodička s vesly", price_paddleboard: "Paddleboard", price_kayak: "Kajak / Kánoe", price_electric: "Loď s elektromotorem",
                 contact_title: "Kde nás najdete", contact_heading: "Kontakt",
@@ -380,9 +380,9 @@
                 map_cta: "Navigovat na místo"
             },
             en: {
-                logo: "Boat Rental U Karla",
+                logo: "Boat Rental U&nbsp;Karla",
                 nav_home: "Home", nav_pricing: "Pricing", nav_contact: "Contact",
-                hero_title: "Boat Rental U Karla", hero_subtitle: "Enjoy the beauty of Vranov Reservoir", hero_cta: "Book / Call Now",
+                hero_title: "Boat Rental U&nbsp;Karla", hero_subtitle: "Enjoy the beauty of Vranov Reservoir", hero_cta: "Book / Call Now",
                 pricing_title: "Price List",
                 price_rowboat: "Rowboat", price_paddleboard: "Paddleboard", price_kayak: "Kayak / Canoe", price_electric: "Electric motor boat",
                 contact_title: "Where to find us", contact_heading: "Contact",
@@ -390,9 +390,9 @@
                 map_cta: "Navigate to location"
             },
             de: {
-                logo: "Bootsverleih U Karla",
+                logo: "Bootsverleih U&nbsp;Karla",
                 nav_home: "Startseite", nav_pricing: "Preise", nav_contact: "Kontakt",
-                hero_title: "Bootsverleih U Karla", hero_subtitle: "Genießen Sie die Schönheit der Talsperre Vranov", hero_cta: "Reservieren / Anrufen",
+                hero_title: "Bootsverleih U&nbsp;Karla", hero_subtitle: "Genießen Sie die Schönheit der Talsperre Vranov", hero_cta: "Reservieren / Anrufen",
                 pricing_title: "Preisliste",
                 price_rowboat: "Ruderboot", price_paddleboard: "Paddleboard", price_kayak: "Kajak / Kanu", price_electric: "Boot mit Elektromotor",
                 contact_title: "Wo Sie uns finden", contact_heading: "Kontakt",
@@ -404,7 +404,7 @@
         function setLanguage(lang) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) el.textContent = translations[lang][key];
+                if (translations[lang][key]) el.innerHTML = translations[lang][key];
             });
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.getAttribute('onclick').includes(lang));

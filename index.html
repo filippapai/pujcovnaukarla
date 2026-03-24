@@ -544,7 +544,9 @@
             const formNext = document.getElementById('form-next');
             if (formNext) {
                 // Point to current URL with a success hash to show a localized message
-                formNext.value = window.location.origin + window.location.pathname + "#success";
+                // This ensures that even if on a custom domain, it redirects back correctly
+                const currentUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                formNext.value = currentUrl + "#success";
             }
             
             localStorage.setItem('pref_lang', lang);

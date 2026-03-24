@@ -58,7 +58,7 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 1px 10px rgba(0,0,0,0.05);
             z-index: 1000;
-            height: 80px;
+            height: 90px;
             display: flex;
             align-items: center;
         }
@@ -70,11 +70,22 @@
             width: 100%;
         }
 
-        .logo {
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text {
             font-size: 1.25rem;
             font-weight: 700;
             color: var(--primary);
-            text-decoration: none;
             letter-spacing: -0.5px;
         }
 
@@ -122,8 +133,8 @@
         /* --- HERO --- */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                        url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), 
+                        url('vranovska-prehrada.jpg') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -276,7 +287,10 @@
 
     <header class="header">
         <nav class="nav container">
-            <a href="#" class="logo" data-i18n="logo">Půjčovna lodiček U&nbsp;Karla</a>
+            <a href="#" class="logo-container">
+                <img src="logo kormidlo.png" alt="Logo" class="logo-img">
+                <span class="logo-text" data-i18n="logo">Půjčovna lodiček U&nbsp;Karla</span>
+            </a>
             <ul class="nav-links">
                 <li><a href="#home" data-i18n="nav_home">Domů</a></li>
                 <li><a href="#pricing" data-i18n="nav_pricing">Ceník</a></li>
